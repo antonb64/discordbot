@@ -107,7 +107,9 @@ class MyClient(discord.Client):
                 await e.edit(nick='SchnuggiBuggi')
 
 
-
+f = open("TOKEN")
+token = f.readline()
+f.close()
 
 client = MyClient()
-client.run('NzEwMDA2ODc4OTI2NjY3Nzk3.Xrv6Yg.3vUQqqKMC67xNil2w3SQz00mu_k')
+client.run(token)
