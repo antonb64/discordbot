@@ -112,12 +112,35 @@ class MyClient(discord.Client):
                     f = open("facts", "a")
                     f.write(wm)
                     f.write("\n")
-                    print("Quote: '{}' to added to facts!".format(wm))
                     f.close()
 
                     #Feedback
                     await message.channel.send("Fact: '{}' added!".format(wm))
                     print("Fact: '{}' added!".format(wm))
+
+                #Check if user wants to add a new nickname for Enes
+                if message_without.lower().startswith("add nickname"):
+
+                    wm = message_without[len("add nickname")+1:]
+
+
+                    wm = wm.replace("ä", "ae")
+                    wm = wm.replace("ö", "oe")
+                    wm = wm.replace("ü", "ue")
+                    wm = wm.replace("Ä", "Ae")
+                    wm = wm.replace("Ö", "Oe")
+                    wm = wm.replace("Ü", "Ue")
+
+                    #Add to file
+                    f = open("nicknames", "a")
+                    f.write(wm)
+                    f.write("\n")
+                    f.close()
+
+
+                    #Feedback
+                    print("Nickname: '{}' added to nicknames.".format(wm))
+                    await message.channel.send("Nickname: '{}' added to nicknames.".format(wm))
 
 
 
@@ -136,8 +159,11 @@ class MyClient(discord.Client):
     #When any Member updates the profile
     async def on_member_update(self, before, after):
 
+        print("{} tried to change the Name!".format(before.nick))
         #Read List of victims
         l = self.readinfile("victims")
+
+
 
 
         i = self.get_all_members()
@@ -145,10 +171,14 @@ class MyClient(discord.Client):
         #For every Member
             if enes.id in l:
                 #If Member is in List
-                print("Changing Name!")
+
                 e = enes
+
+                #Import Names
+                names = self.readstrfile("nicknames")
+
                 #Change Nickname
-                await e.edit(nick='SchnuggiBuggi')
+                await e.edit(nick=random.choice(names))
 
 #Open File and read token out of it
 f = open("TOKEN")
