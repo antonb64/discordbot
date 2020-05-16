@@ -166,7 +166,8 @@ class MyClient(discord.Client):
         #Import all cringe Names
         names = self.readstrfile("nicknames")
 
-        if not (after.nick in names):
+        #If the user is in the victims list and the name is restricted
+        if (not (after.nick + "\n" )in names) and after.id in l:
             await after.edit(nick=random.choice(names))
 
 
