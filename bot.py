@@ -163,22 +163,13 @@ class MyClient(discord.Client):
         #Read List of victims
         l = self.readinfile("victims")
 
+        #Import all cringe Names
+        names = self.readstrfile("nicknames")
+
+        if not (after.nick in names):
+            await after.edit(nick=random.choice(names))
 
 
-
-        i = self.get_all_members()
-        for enes in i:
-        #For every Member
-            if enes.id in l:
-                #If Member is in List
-
-                e = enes
-
-                #Import Names
-                names = self.readstrfile("nicknames")
-
-                #Change Nickname
-                await e.edit(nick=random.choice(names))
 
 #Open File and read token out of it
 f = open("TOKEN")
