@@ -52,7 +52,7 @@ class MyClient(discord.Client):
                 #If the Message was help print the help message
                 if message_without.lower().startswith("help"):
                     await message.channel.send("Befehle: \n '!add victim VICTIMID' - adds a new victim \n '!add user USERID'- adds a new user, able to control the bot"
-                                               " \n '!add enesfact YOURENESFACT' - to add your fact about Enes")
+                                               " \n '!add enesfact YOURENESFACT' - to add your fact about Enes \n '!add nickname NICKNAME'")
 
                 #If the message was to add a new victim to the list
                 if message_without.lower().startswith("add victim"):
@@ -148,10 +148,11 @@ class MyClient(discord.Client):
             elif "enes" in message.content.lower():
                 #Read all facts out of File
                 fl = self.readstrfile("facts")
-
+                print(random.choice(fl))
+                """
                 #Send back a random fact
                 await message.channel.send(random.choice(fl))
-
+                """
 
 
 
