@@ -28,7 +28,7 @@ class MyClient(discord.Client):
     #If bot ready... change status and log to Console
     async def on_ready(self):
         print('Logged on as {0}!'.format(self.user))
-        await self.change_presence(activity=discord.Game('Enes ist ein Inter'), status=discord.Status.invisible)
+        await self.change_presence(activity=discord.Game('targetS ist ein Inter'), status=discord.Status.invisible)
 
     #On Message recieved
     async def on_message(self, message):
@@ -52,7 +52,7 @@ class MyClient(discord.Client):
                 #If the Message was help print the help message
                 if message_without.lower().startswith("help"):
                     await message.channel.send("Befehle: \n '!add victim VICTIMID' - adds a new victim \n '!add user USERID'- adds a new user, able to control the bot"
-                                               " \n '!add enesfact YOURENESFACT' - to add your fact about Enes \n '!add nickname NICKNAME'")
+                                               " \n '!add targetSfact YOURtargetSFACT' - to add your fact about targetS \n '!add nickname NICKNAME'")
 
                 #If the message was to add a new victim to the list
                 if message_without.lower().startswith("add victim"):
@@ -93,11 +93,11 @@ class MyClient(discord.Client):
                         await message.channel.send("Sorry, gibt bitte eine Zahl ein!")
                         print("Fehlgeschlagen - ID muss eine Zahl sein.")
 
-                #Check if user wants to add a new Fact about Enes
-                if message_without.lower().startswith("add enesfact"):
+                #Check if user wants to add a new Fact about targetS
+                if message_without.lower().startswith("add targetSfact"):
 
                     #Message without command
-                    wm = message_without[len("add enesfact")+ 1:]
+                    wm = message_without[len("add targetSfact")+ 1:]
 
                     #Replace all 'Umlaute'
                     wm = wm.replace("ä", "ae")
@@ -118,7 +118,7 @@ class MyClient(discord.Client):
                     await message.channel.send("Fact: '{}' added!".format(wm))
                     print("Fact: '{}' added!".format(wm))
 
-                #Check if user wants to add a new nickname for Enes
+                #Check if user wants to add a new nickname for targetS
                 if message_without.lower().startswith("add nickname"):
 
                     wm = message_without[len("add nickname")+1:]
@@ -144,8 +144,8 @@ class MyClient(discord.Client):
 
 
 
-            #If message is not a command and contains Enes
-            elif "enes" in message.content.lower():
+            #If message is not a command and contains targetS
+            elif "targetS" in message.content.lower():
                 #Read all facts out of File
                 fl = self.readstrfile("facts")
                 print(random.choice(fl))
